@@ -1,0 +1,13 @@
+PedroFernandes HerculanoDeMelo 14.5
+PedroFernandes FranciscoPauloDeOliveira 3.6
+PedroFernandes HiginoRoberto 11.4
+JoanaTimoteo AmaroCavalcante 2.9
+JoanaTimoteo AnaReinaldo 5.7
+AmaroCavalcante AnaReinaldo 5.7
+FranciscoPauloDeOliveira JoaoGama 14.7
+JoaoGama AnaReinaldo 13.6
+JoaoGama HiginoRoberto 7.6
+HiginoRoberto PorfiroGabrielDosAnjos 1.5
+HiginoRoberto AntonioMartins 10.4
+PorfiroGabrielDosAnjos AntonioMartins 7.9
+AntonioMartins JoseVicente 12.9

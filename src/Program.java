@@ -1,12 +1,15 @@
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-
-        String path = "C://Users//user//PROJETOS INTELLIJ//DSA//a3-1//src//grafo.txt";
-        Grafo<String> grafo = lerArquivo(path);
+        Path projectRoot = Paths.get("").toAbsolutePath();
+        Path path = projectRoot.resolve(Paths.get("src","grafo.txt"));
+        System.out.println(path);
+        Grafo<String> grafo = lerArquivo(path.toString());
 
         int opcao = mostrarMenu();
 
@@ -80,6 +83,10 @@ public class Program {
         System.out.println("Digite o nome da creche de destino:");
         String destino = scanner.nextLine();
         double distanciaEntreCreches = grafo.distanciaEntreVertices(origem, destino);
+        if (distanciaEntreCreches == -1) {
+            System.out.println("Não existe conexão direta entre as creches fornecidas");
+            return;
+        }
         System.out.println("A distância entre a creche " + origem + " e a creche " + destino + " é de: " + distanciaEntreCreches + "km");
     }
 
@@ -109,4 +116,3 @@ public class Program {
     }
 
 }
-

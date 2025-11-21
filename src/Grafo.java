@@ -78,17 +78,17 @@ public class Grafo<T> {
     }
 
     public ListaSimplesEncadeada<Vertice<T>> vizinhosOrdenados(T origem) {
-        int idx = indexOf(origem);
-        if (idx == -1) throw new RuntimeException("Creche inexistente");
+        int indexOrigem = indexOf(origem);
+        if (indexOrigem == -1) throw new RuntimeException("Creche inexistente");
         ListaSimplesEncadeada<Vertice<T>> lista = new ListaSimplesEncadeada<>();
         Node<Vertice<T>> atual = vertices.getHead();
-        int j = 0;
+        int posicaoAtual = 0;
         while (atual != null) {
-            if (matrizAdj[idx][j] == 1) {
+            if (matrizAdj[indexOrigem][posicaoAtual] == 1) {
                 lista.add(atual.getDado());
             }
             atual = atual.getProximo();
-            j++;
+            posicaoAtual++;
         }
         ordenarPorDistancia(origem, lista);
         return lista;
@@ -118,11 +118,11 @@ public class Grafo<T> {
         while (atual != null) {
             Aresta<T> ar = atual.getDado();
 
-            boolean mesma =
+            boolean origemEDestinoEstaoNaMesmaAresta =
                     (ar.getInicio().getDado().equals(origem) && ar.getFim().getDado().equals(destino))
                             || (ar.getInicio().getDado().equals(destino) && ar.getFim().getDado().equals(origem));
 
-            if (mesma) return ar.getPeso();
+            if (origemEDestinoEstaoNaMesmaAresta) return ar.getPeso();
 
             atual = atual.getProximo();
         }

@@ -80,35 +80,36 @@ public class Grafo<T> {
     public ListaSimplesEncadeada<Vertice<T>> vizinhosOrdenados(T origem) {
         int indexOrigem = indexOf(origem);
         if (indexOrigem == -1) throw new RuntimeException("Creche inexistente");
-        ListaSimplesEncadeada<Vertice<T>> lista = new ListaSimplesEncadeada<>();
+        ListaSimplesEncadeada<Vertice<T>> conexoes = new ListaSimplesEncadeada<>();
         Node<Vertice<T>> atual = vertices.getHead();
         int posicaoAtual = 0;
         while (atual != null) {
             if (matrizAdj[indexOrigem][posicaoAtual] == 1) {
-                lista.add(atual.getDado());
+                conexoes.add(atual.getDado());
             }
             atual = atual.getProximo();
             posicaoAtual++;
         }
-        ordenarPorDistancia(origem, lista);
-        return lista;
+        ordenarPorDistancia(origem, conexoes);
+        return conexoes;
     }
 
     private void ordenarPorDistancia(T origem, ListaSimplesEncadeada<Vertice<T>> lista) {
         boolean trocou;
         do {
             trocou = false;
-            Node<Vertice<T>> a = lista.getHead();
-            while (a != null && a.getProximo() != null) {
-                double d1 = distanciaEntreVertices(origem, a.getDado().getDado());
-                double d2 = distanciaEntreVertices(origem, a.getProximo().getDado().getDado());
-                if (d1 > d2) {
-                    Vertice<T> temp = a.getDado();
-                    a.setDado(a.getProximo().getDado());
-                    a.getProximo().setDado(temp);
+            Node<Vertice<T>> head = lista.getHead();
+            while (head != null && head.getProximo() != null) {
+                double distancia1 = distanciaEntreVertices(origem, head.getDado().getDado());
+                double distancia2 = distanciaEntreVertices(origem, head.getProximo().getDado().getDado());
+                boolean deveTrocar = distancia1 > distancia2;
+                if (deveTrocar) {
+                    Vertice<T> temp = head.getDado();
+                    head.setDado(head.getProximo().getDado());
+                    head.getProximo().setDado(temp);
                     trocou = true;
                 }
-                a = a.getProximo();
+                head = head.getProximo();
             }
         } while (trocou);
     }

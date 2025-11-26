@@ -33,12 +33,4 @@ public class Aresta<T> {
         this.fim = fim;
     }
 
-    public Vertice<T> getVerticeOposto(Vertice<T> vertice) {
-        if (this.inicio.equals(vertice)) {
-            return this.fim;
-        } else if (this.fim.equals(vertice)) {
-            return this.inicio;
-        }
-        return null;
-    }
 }

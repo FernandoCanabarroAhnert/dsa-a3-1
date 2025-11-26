@@ -8,7 +8,6 @@ public class Program {
     public static void main(String[] args) {
         Path projectRoot = Paths.get("").toAbsolutePath();
         Path path = projectRoot.resolve(Paths.get("src","grafo.txt"));
-        System.out.println(path);
         Grafo<String> grafo = lerArquivo(path.toString());
 
         int opcao = mostrarMenu();
